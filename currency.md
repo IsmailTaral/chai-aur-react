@@ -1,6 +1,12 @@
 # notes for currency converter app
 
-## api link
+## new api link
+
+```javascript
+let url = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency}.json`
+
+```
+## The old API link provided in the video lecture is no longer functional. instead of using it please use the new link 
 
 ```javascript
 let url = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`
@@ -103,5 +109,7 @@ function App() {
             </div>
         </div>
     );
+
+}
 
 ```
