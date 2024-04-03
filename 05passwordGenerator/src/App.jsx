@@ -12,18 +12,30 @@ function App() {
   const passwordRef = useRef(null)
 
   const passwordGenerator = useCallback(() => {
-    let pass = ""
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    if (numberAllowed) str += "0123456789"
-    if (charAllowed) str += "!@#$%^&*-_+=[]{}~`"
-
-    for (let i = 1; i <= length; i++) {
-      let char = Math.floor(Math.random() * str.length + 1)
-      pass += str.charAt(char)
-      
+    let password = [];
+    for (let i = 0; i < Number(length); i++) {
+        password.push("");
+    }
+    let words = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let numbers = "1234567890";
+    let characters = "!@#$&*";
+    if (numberAllowed) {
+        let randomIndex = Math.floor(Math.random() * password.length);
+        password[randomIndex] = numbers[Math.floor(Math.random() * numbers.length)];
+        words += numbers;
+    }
+    if (charAllowed) {
+        let randomIndex = Math.floor(Math.random() * password.length);
+        password[randomIndex] = characters[Math.floor(Math.random() * characters.length)];
+        words += characters;
+    }
+    for (let i = 0; i < Number(length); i++) {
+        if (password[i] === "") {
+            password[i] = words[Math.floor(Math.random() * words.length)]
+        }
     }
 
-    setPassword(pass)
+    setPassword(password.join(""));
 
 
   }, [length, numberAllowed, charAllowed, setPassword])
